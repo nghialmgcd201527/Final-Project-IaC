@@ -18,6 +18,7 @@ from stacks.image_bucket_stack import ImageBucketStack
 from stacks.registration_lambda_role_stack import RegistrationLambdaRoleStack
 from stacks.registration_lambda_stack import RegistrationLambdaStack
 from stacks.dynamodb_stack import DynamoDBStack
+from stacks.authentication_lambda_stack import AuthenticationLambdaStack
 
 import cdk_nag
 from helper import config
@@ -40,6 +41,11 @@ registration_lambda_role_stack = RegistrationLambdaRoleStack(app,
 
 registration_lambda_stack = RegistrationLambdaStack(app, 
                     "registration-lambda-stack",
+                    env=cdk.Environment(account=conf_app.get('account_id'),
+                    region=conf_app.get('region')))
+
+authentication_lambda_stack = AuthenticationLambdaStack(app, 
+                    "authentication-lambda-stack",
                     env=cdk.Environment(account=conf_app.get('account_id'),
                     region=conf_app.get('region')))
 
