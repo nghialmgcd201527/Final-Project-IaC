@@ -1,0 +1,19 @@
+#aws account
+account_id: "127779471063"
+region: ap-southeast-1
+environment: dev
+
+#vpc
+project_name: "final-project"
+vpc_cidr: "10.120.0.0/20"
+subnet_size: 24
+max_azs: 2
+
+stage: "main"
+default_branch: "main"
+build_branch: "main"
+
+web_identity_repo: "web-identity"
+web_admin_repo: "web-admin"
+web_component_repo: "web-component"
+file_service_repo: "file-service"
