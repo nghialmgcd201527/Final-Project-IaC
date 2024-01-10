@@ -21,6 +21,7 @@ from stacks.dynamodb_stack import DynamoDBStack
 from stacks.authentication_lambda_stack import AuthenticationLambdaStack
 # from stacks.s3_put_policy_stack import S3PutPolicyStack
 from stacks.api_gateway_role_stack import ApiGatewayRoleStack
+from stacks.api_gateway_stack import ApiGatewayStack
 
 import cdk_nag
 from helper import config

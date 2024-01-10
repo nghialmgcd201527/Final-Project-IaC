@@ -27,6 +27,22 @@ class ApiGatewayRoleStack(Stack):
             role_name="FacialRecognitionAPIGatewayRoleCDK"
         )
 
+        self.api_gateway_role.attach_inline_policy(
+            iam.Policy(
+                self,
+                "S3PutPolicy",
+                statements=[
+                    iam.PolicyStatement(
+                        actions=["s3:PutObject"],
+                        resources=[f"{core.Fn.import_value('RegisterLambdaRoleArn')}/*"],
+                        effect=iam.Effect.ALLOW,
+                        sid="AllowPutObject"
+                    )
+                ],
+                policy_name="FacialRecognitionS3PutPolicyCDK"
+            )
+        )
+
         core.CfnOutput(self, "ApiGatewayRoleName", value=self.api_gateway_role.role_name,
                        export_name="ApiGatewayRoleName")
         core.CfnOutput(self, "ApiGatewayRoleArn", value=self.api_gateway_role.role_arn,
