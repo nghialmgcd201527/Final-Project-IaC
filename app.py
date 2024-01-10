@@ -19,6 +19,8 @@ from stacks.registration_lambda_role_stack import RegistrationLambdaRoleStack
 from stacks.registration_lambda_stack import RegistrationLambdaStack
 from stacks.dynamodb_stack import DynamoDBStack
 from stacks.authentication_lambda_stack import AuthenticationLambdaStack
+# from stacks.s3_put_policy_stack import S3PutPolicyStack
+from stacks.api_gateway_role_stack import ApiGatewayRoleStack
 
 import cdk_nag
 from helper import config
@@ -53,6 +55,16 @@ dynamodb_stack = DynamoDBStack(app,
                     "dynamodb-stack",
                     env=cdk.Environment(account=conf_app.get('account_id'),
                     region=conf_app.get('region')))
+
+api_gateway_role_stack = ApiGatewayRoleStack(app, 
+                    "api-gateway-role-stack",
+                    env=cdk.Environment(account=conf_app.get('account_id'),
+                    region=conf_app.get('region')))
+
+# s3_put_policy_stack = S3PutPolicyStack(app, 
+#                     "s3-put-policy-stack",
+#                     env=cdk.Environment(account=conf_app.get('account_id'),
+#                     region=conf_app.get('region')))
 
 # Aspects.of(app).add(cdk_nag.AwsSolutionsChecks())
 app.synth()
